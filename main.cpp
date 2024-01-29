@@ -69,7 +69,7 @@ int main()
 		// TODO: colocar tudo que tem dentro dos cases em funções
 		switch(op)
 		{
-			case 1:.
+			case 1:
 				cout << "Cadastrar filme!" << endl;
 				do
 				{
