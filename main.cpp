@@ -11,6 +11,8 @@ typedef struct
 	bool disponivel;
 }Filme;
 
+// Teste!
+
 void menu(void)
 {
 	cout << endl;
