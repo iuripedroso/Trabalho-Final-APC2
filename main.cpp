@@ -66,7 +66,7 @@ int main()
 		menu();
 		cin >> op;
 	
-		// TODO: colocar tudo que tem dentro dos cases em funções
+		// TODO: colocar tudo que tem dentro dos cases em funções.
 		switch(op)
 		{
 			case 1:
