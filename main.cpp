@@ -24,12 +24,12 @@ void menu(void)
 	cout << "(5) Sair" << endl;
 }
 
-int create(Filme *filme, int count)
+int create(Filme *filme, int id)
 {
 	
 	cout << endl;
-	filme->id = count;
-	cout << "Id: " << count << endl;
+	filme->id = id;
+	cout << "Id: " << id << endl;
 
 	cout << "Nome: ";
 	cin >> filme->nome;
@@ -48,7 +48,6 @@ int create(Filme *filme, int count)
 
 void read(Filme *filme)
 {
-	unsigned int count = 0;
 	cout << filme->id; cout << endl;
 	cout << filme->nome; cout << endl;
 	cout << filme->ano; cout << endl;
@@ -58,7 +57,6 @@ void read(Filme *filme)
 
 int main()
 {
-	int count = 1;
 	int N = 0;
 	char continua;
 	Filme filme[1000];
@@ -79,22 +77,30 @@ int main()
 				cout << "----------------" << endl;
 				do
 				{
-					N += create(&filme[N], count);
-					count++;
+					N += create(&filme[N], N);
 					cout << endl <<  "Continua? S/N " << endl;
 				} while (cin >> continua && continua == 'S' || continua == 's');
 				cout << "\033[2J\033[1;1H";				
 				break;
 				
 			case 2:
+				int id;
 				cout << "\033[2J\033[1;1H"; 
 				cout << "Remover filme!" << endl;
 				cout << "--------------" << endl;
-				do
+				cout << "ID do filme que deseja remover: ";
+				cin >> id;
+
+				for (int i = 0; i < N; i++)
 				{
-								cout << "ID do filme que deseja remover: ";
+					if (filme[i].id == id)
+						  for (int j = i; j < N; j++)
+									filme[j] = filme[j + 1];
 				}
-				while (cin >> filme->id);			
+				N--;
+
+				for (int i = 0; i < N; i++)
+								filme[i].id = i;
 				break;
 
 			case 3:
