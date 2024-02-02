@@ -95,7 +95,7 @@ int main()
 				{
 					if (filme[i].id == id)
 						  for (int j = i; j < N; j++)
-									filme[j] = filme[j + 1];
+								filme[j] = filme[j + 1];
 				}
 				N--;
 
