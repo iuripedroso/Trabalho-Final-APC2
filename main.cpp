@@ -20,7 +20,7 @@ void menu(void)
 	cout << "(1) Cadastrar filme" << endl;
 	cout << "(2) Remover filme" << endl;
 	cout << "(3) Vizualizar filmes" << endl;
-	cout << "(4) Atualizar dados do filme" << endl;
+	cout << "(4) Buscar filme" << endl;
 	cout << "(5) Sair" << endl;
 }
 
@@ -93,14 +93,14 @@ int main()
 
 				for (int i = 0; i < N; i++)
 				{
-					if (filme[i].id == id)
-						  for (int j = i; j < N; j++)
-								filme[j] = filme[j + 1];
+					if (filme[i].id == id) // Busca sequencial
+						for (int j = i; j < N; j++)
+							filme[j] = filme[j + 1];
 				}
 				N--;
 
 				for (int i = 0; i < N; i++)
-								filme[i].id = i;
+						filme[i].id = i;
 				break;
 
 			case 3:
@@ -114,8 +114,46 @@ int main()
 				break;
 
 			case 4: 
-				cout << "Atualizar dados do filme!" << endl;
-				break;
+				cout << "\033[2J\033[1;1H";
+				cout << "Buscar filme" << endl;
+				cout << "------------" << endl;
+				cout << "Buscar por: " << endl;
+				cout << "(1) Id " << endl;
+				cout << "(2) Nome " << endl;
+				cout << "(3) Ano de lançamento " << endl;
+				cout << "(4) Diretor " << endl;
+
+				int op_busca;
+				cin >> op_busca;
+
+				switch (op_busca)
+				{
+					case 1:
+						// TODO
+						int x;
+						cout << "Id do filme a ser buscado: ";
+						cin >> x;
+						for (int i = 0; i < N; i++)
+							if (filme[i].id == x)
+							{	cout << filme[i].id << endl;
+								cout << filme[i].nome << endl;
+								cout << filme[i].ano << endl;
+								cout << filme[i].diretor << endl;
+								break;
+							}	
+						break;
+					case 2:
+						// TODO
+						break;
+					case 3:
+						// TODO
+						break;
+					case 4:
+						// TODO
+						break;
+					default:
+						cout << "Filme não encontrado :(" << endl;
+				}
 		}
 	}
 	return 0;
