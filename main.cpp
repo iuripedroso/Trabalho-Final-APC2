@@ -11,6 +11,11 @@ typedef struct
 	bool disponivel;
 }Filme;
 
+void limpa_terminal(void)
+{
+	cout << "\033[2J\033[1;1H";
+}
+
 void menu(void)
 {
 	cout << endl;
@@ -25,22 +30,25 @@ void menu(void)
 }
 
 int create(Filme *filme, int id)
-{
-	
+{	
 	cout << endl;
 	filme->id = id;
 	cout << "Id: " << id << endl;
 
 	cout << "Nome: ";
-	cin >> filme->nome;
+	cin.get();
+	getline(cin, filme->nome);
+	//cin >> filme->nome;
 
 	cout << "Ano: ";
 	cin >> filme->ano;
 
 	cout << "Diretor: ";
-	cin >> filme->diretor;
+	cin.get();
+	//cin >> filme->diretor;
+	getline(cin, filme->diretor);
 
-	cout << "Disponivel? ";
+	cout << "Disponivel? (1/0) ";
 	cin >> filme->disponivel;
 
 	return 1;	
@@ -71,8 +79,7 @@ int main()
 		switch(op)
 		{
 			case 1:
-				
-				cout << "\033[2J\033[1;1H"; // Limpa terminal
+				limpa_terminal();			
 				cout << "Cadastrar filme!" << endl;
 				cout << "----------------" << endl;
 				do
@@ -80,17 +87,16 @@ int main()
 					N += create(&filme[N], N);
 					cout << endl <<  "Continua? S/N " << endl;
 				} while (cin >> continua && continua == 'S' || continua == 's');
-				cout << "\033[2J\033[1;1H";				
+				limpa_terminal();
 				break;
-				
+
 			case 2:
 				int id;
-				cout << "\033[2J\033[1;1H"; 
+				limpa_terminal();
 				cout << "Remover filme!" << endl;
 				cout << "--------------" << endl;
 				cout << "ID do filme que deseja remover: ";
 				cin >> id;
-
 				for (int i = 0; i < N; i++)
 				{
 					if (filme[i].id == id) // Busca sequencial
@@ -98,13 +104,12 @@ int main()
 							filme[j] = filme[j + 1];
 				}
 				N--;
-
 				for (int i = 0; i < N; i++)
 						filme[i].id = i;
 				break;
 
 			case 3:
-				cout << "\033[2J\033[1;1H";
+				limpa_terminal();
 				cout << endl <<  "Filmes em estoque: " << endl;
 				for (int i = 0; i < N; i++)
 				{
@@ -114,14 +119,12 @@ int main()
 				break;
 
 			case 4: 
-				cout << "\033[2J\033[1;1H";
+				limpa_terminal();
 				cout << "Buscar filme" << endl;
 				cout << "------------" << endl;
 				cout << "Buscar por: " << endl;
-				cout << "(1) Id " << endl;
-				cout << "(2) Nome " << endl;
-				cout << "(3) Ano de lançamento " << endl;
-				cout << "(4) Diretor " << endl;
+				cout << "(1) Nome " << endl;
+				cout << "(2) Ano de lançamento " << endl;
 
 				int op_busca;
 				cin >> op_busca;
@@ -129,27 +132,9 @@ int main()
 				switch (op_busca)
 				{
 					case 1:
-						// TODO
-						int x;
-						cout << "Id do filme a ser buscado: ";
-						cin >> x;
-						for (int i = 0; i < N; i++)
-							if (filme[i].id == x)
-							{	cout << filme[i].id << endl;
-								cout << filme[i].nome << endl;
-								cout << filme[i].ano << endl;
-								cout << filme[i].diretor << endl;
-								break;
-							}	
-						break;
+						// TODO: buscar por nome
 					case 2:
-						// TODO
-						break;
-					case 3:
-						// TODO
-						break;
-					case 4:
-						// TODO
+						// TODO: buscar por data
 						break;
 					default:
 						cout << "Filme não encontrado :(" << endl;
