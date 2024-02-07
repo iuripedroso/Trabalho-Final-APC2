@@ -10,6 +10,7 @@ typedef struct
 	string diretor;
 	bool disponivel; // TODO: mudar pra char (s/n)
 }Filme;
+//PULLLL
 
 void limpa_terminal(void)
 {
