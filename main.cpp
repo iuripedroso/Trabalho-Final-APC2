@@ -8,7 +8,7 @@ typedef struct
 	string nome;
 	int ano;
 	string diretor;
-	bool disponivel;
+	bool disponivel; // TODO: mudar pra char (s/n)
 }Filme;
 
 void limpa_terminal(void)
@@ -79,7 +79,7 @@ int main()
 		switch(op)
 		{
 			case 1:
-				limpa_terminal();			
+				system("clear||cls");
 				cout << "Cadastrar filme!" << endl;
 				cout << "----------------" << endl;
 				do
@@ -120,25 +120,24 @@ int main()
 
 			case 4: 
 				limpa_terminal();
+				int n;
 				cout << "Buscar filme" << endl;
 				cout << "------------" << endl;
-				cout << "Buscar por: " << endl;
-				cout << "(1) Nome " << endl;
-				cout << "(2) Ano de lançamento " << endl;
+				cout << "Buscar por id: " << endl;
+				cin >> n;
 
-				int op_busca;
-				cin >> op_busca;
+				for (int i = 0; i < N; i++)
+					if (filme[i].id == n)
+					{
+						cout << "Filme econtrado!" << endl;
+						cout << "----------------" << endl;
+						cout << filme[i].id << endl;
+						cout << filme[i].nome << endl;
+						cout << filme[i].ano << endl;
+						cout << filme[i].diretor << endl;
+						cout << filme[i].disponivel << endl;
+					}
 
-				switch (op_busca)
-				{
-					case 1:
-						// TODO: buscar por nome
-					case 2:
-						// TODO: buscar por data
-						break;
-					default:
-						cout << "Filme não encontrado :(" << endl;
-				}
 		}
 	}
 	return 0;
