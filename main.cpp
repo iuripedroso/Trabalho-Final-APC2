@@ -61,7 +61,8 @@ void read(Filme *filme)
 	cout << filme->ano; cout << endl;
 	cout << filme-> diretor; cout << endl;
 	cout << filme->disponivel; cout << endl;
-}
+} 
+//KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 
 int main()
 {
