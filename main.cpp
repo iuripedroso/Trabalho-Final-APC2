@@ -8,21 +8,15 @@ typedef struct
 	string nome;
 	int ano;
 	string diretor;
-	bool disponivel; // TODO: mudar pra char (s/n)
+	char disponivel; 
 }Filme;
-//PULLLL
-
-void limpa_terminal(void)
-{
-	cout << "\033[2J\033[1;1H";
-}
 
 void menu(void)
 {
 	cout << endl;
 	cout << "Sistema de controle e gerencimento de filmes" << endl;
 	cout << "--------------------------------------------" << endl;
-	cout << "Opções: " << endl;
+	cout << "OpÃ§Ãµes: " << endl;
 	cout << "(1) Cadastrar filme" << endl;
 	cout << "(2) Remover filme" << endl;
 	cout << "(3) Vizualizar filmes" << endl;
@@ -49,7 +43,7 @@ int create(Filme *filme, int id)
 	//cin >> filme->diretor;
 	getline(cin, filme->diretor);
 
-	cout << "Disponivel? (1/0) ";
+	cout << "Disponivel? (S/N) ";
 	cin >> filme->disponivel;
 
 	return 1;	
@@ -57,13 +51,12 @@ int create(Filme *filme, int id)
 
 void read(Filme *filme)
 {
-	cout << filme->id; cout << endl;
-	cout << filme->nome; cout << endl;
-	cout << filme->ano; cout << endl;
-	cout << filme-> diretor; cout << endl;
-	cout << filme->disponivel; cout << endl;
+	cout <<"Filme id: "<< filme->id; cout << endl;
+	cout <<"Nome: "<< filme->nome; cout << endl;
+	cout <<"Ano: "<< filme->ano; cout << endl;
+	cout <<"Diretor: "<< filme-> diretor; cout << endl;
+	cout <<"Disponivel: "<< filme->disponivel; cout << endl;
 } 
-//KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 
 int main()
 {
@@ -77,7 +70,7 @@ int main()
 		menu();
 		cin >> op;
 	
-		// TODO: colocar tudo que tem dentro dos cases em funções.
+		// TODO: colocar tudo que tem dentro dos cases em funÃ§Ãµes.
 		switch(op)
 		{
 			case 1:
@@ -89,12 +82,12 @@ int main()
 					N += create(&filme[N], N);
 					cout << endl <<  "Continua? S/N " << endl;
 				} while (cin >> continua && continua == 'S' || continua == 's');
-				limpa_terminal();
+				system("clear||cls");
 				break;
 
 			case 2:
 				int id;
-				limpa_terminal();
+				system("clear||cls");
 				cout << "Remover filme!" << endl;
 				cout << "--------------" << endl;
 				cout << "ID do filme que deseja remover: ";
@@ -108,11 +101,16 @@ int main()
 				N--;
 				for (int i = 0; i < N; i++)
 						filme[i].id = i;
+				cout << "Filme removido do Estoque.";
 				break;
+				
+				
+				
 
 			case 3:
-				limpa_terminal();
+				system("clear||cls");
 				cout << endl <<  "Filmes em estoque: " << endl;
+				cout << "------------" << endl;
 				for (int i = 0; i < N; i++)
 				{
 					read(&filme[i]);
@@ -121,23 +119,16 @@ int main()
 				break;
 
 			case 4: 
-				limpa_terminal();
+				system("clear||cls");
 				int n;
-				cout << "Buscar filme" << endl;
+				cout << "Buscar filme por id:" << endl;
 				cout << "------------" << endl;
-				cout << "Buscar por id: " << endl;
 				cin >> n;
 
 				for (int i = 0; i < N; i++)
 					if (filme[i].id == n)
 					{
-						cout << "Filme econtrado!" << endl;
-						cout << "----------------" << endl;
-						cout << filme[i].id << endl;
-						cout << filme[i].nome << endl;
-						cout << filme[i].ano << endl;
-						cout << filme[i].diretor << endl;
-						cout << filme[i].disponivel << endl;
+						read(&filme[i]);
 					}
 
 		}
